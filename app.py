@@ -1,12 +1,15 @@
-import openpyxl as xl
-wb = xl.load_workbook('transactions.xlsx')
-sheet = wb['Sheet1']
-# cell = sheet['a3']
+from pathlib import Path
+from excel_automation import add_new_chart
 
-for row in range(2, sheet.max_row + 1):
-    cell = sheet.cell(row, 3)
-    corrected_price = cell.value * 0.9
-    corrected_price_cell = sheet.cell(row,4)
-    corrected_price_cell.value = f'${corrected_price}'
+path = Path()
+excel_sheet = ''
+for files in path.glob('transactions.xlsx'):
+    excel_sheet = files
 
-wb.save('trans2.xlsx')
+
+add_new_chart(excel_sheet)
+
+
+print(excel_sheet)
+
+# print(path.glob('*.py'))
